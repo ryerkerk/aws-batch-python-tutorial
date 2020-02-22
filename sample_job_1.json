@@ -1,0 +1,17 @@
+{
+    "jobName": "sample_job_1",
+    "jobQueue": "batch_tutorial_queue",
+    "jobDefinition": "aws-batch-test",
+    "containerOverrides": {
+        "environment": [
+            {
+                "name": "save_name",
+                "value": "sample_job_1"
+            },
+            {
+                "name": "var_a",
+                "value": "6"
+            }
+        ]
+    }
+}
