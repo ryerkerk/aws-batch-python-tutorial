@@ -82,7 +82,9 @@ If you have not already done so you will need to configure AWS CLI to your accou
 
 Each time you submit a batch job you will be able to pass a different set of parameters to your Python script. In this tutorial the parameters will be passed as command line argument, and your script must be able to accept these arguments.
 
-It is recommended here to use the `argparse` package, as is done in the example script (`script.py`) to parse command line arguments. This will automatically create a `--help` document for your python script, which is parsed later to obtain a list of command line arguments.
+It is recommended here to use the `argparse` package to parse command line arguments. This will automatically create a `--help` document for your python script, which is parsed later to obtain a list of command line arguments.
+
+An example script, `script.py`, is provided here to complete the tutorial. This script takes `var_a` and `var_b` as input arguments, multiplies them and saves the results to a pickle file named using a `save_name` input argument. 
 
 ## Create an S3 bucket to store results
 
