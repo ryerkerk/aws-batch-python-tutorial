@@ -11,6 +11,8 @@ Please note that while any costs should be minimal, you may be charged for the A
 
 Several steps and commands will contain values unique to your AWS account, for example your `<Account ID>`. Be sure to replace these with your values as you work through the tutorial.
 
+Please feel free to create an issue on this repository if you have any problems!
+
 ## Prerequisites
 
 * An AWS account
@@ -84,7 +86,7 @@ Each time you submit a batch job you will be able to pass a different set of par
 
 It is recommended here to use the `argparse` package to parse command line arguments. This will automatically create a `--help` document for your python script, which is parsed later to obtain a list of command line arguments.
 
-An example script, `script.py`, is provided here to complete the tutorial. This script takes `var_a` and `var_b` as input arguments, multiplies them and saves the results to a pickle file named using a `save_name` input argument. 
+An example script, `script.py`, is provided here to complete the tutorial. This script takes `var_a` and `var_b` as input arguments, multiplies them and saves the results to a pickle file named using a `save_name` input argument.
 
 ## Create an S3 bucket to store results
 
@@ -214,3 +216,18 @@ By clicking the numbers under each type of job status (e.g., "Succeeded") you ca
 Once a job is complete you can retrieve the results one of two ways. First, you can navigate to the S3 bucket in the AWS console and view or download the files. Alternatively, you can use the AWS CLI to sync folders in the S3 bucket to your local directory, for example:
 
 `aws s3 sync s3://<your S3 bucket name>/results ./results`
+
+## Using your own code
+
+After completing this tutorial you can modify it to run your own python scripts by following these steps:
+
+1. Edit your code to accept command line arguments using the `argparse` package, as is done in the sample script provided here.
+2. Edit `run_job.sh` and update the buckets/folders/file names of any input and output files used by your script.
+3. Make a new Dockerfile for your code with any required dependencies. Once built, create a new ECR repository for this image and point the job definition to it.
+4. When creating the compute environment select the instance type appropriate for your work.
+5. When defining a job enter an appropriate execution timeout time. It should be long enough that you are very confident your script will finish, but short enough that it will eventually terminate should your script fail to complete. If your script hangs you will be charged until the timeout time is reached or you manually terminate the job.
+6. Specify an appropriate vCPU number and memory size for your job. It is best not to put more than required. AWS batch will put multiple jobs onto a single instance if that instance has sufficient resource to support multiple jobs.
+
+## Cleaning up
+
+You will be charged for the memory your docker images use when uploaded to the ECR, and for the files contained in your S3 bucket. You will be continuosly charged for these resources even when not running jobs. To avoid this make sure you delete your unused ECR repositories and S3 buckets/files once finished.
