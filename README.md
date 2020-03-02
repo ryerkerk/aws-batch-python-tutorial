@@ -28,9 +28,9 @@ The policies used here are more permissive than necessary and can be restricted 
 
 1. Log into your root account and navigate to the IAM service.
 2. If desired create a new user.
-3. Navigate to your desired user's permissions, select "Attach existing policies directly", and attach either of the following policies:
-  1. Select the "AdministratorAccess" policy. Click "Review" and then "add Permissions" to complete.
-  4. Select the json tab and paste in the following policy. This policy is less permissive than administrator access, but still  give this users full access to each of the resources listed below.
+3. Attach either of the following policies:
+   1. Navigate to your desired user's permissions, select "Attach existing policies directly", and select the "AdministratorAccess" policy. Click "Review" and then "add Permissions" to complete.
+   4. From the user summary page click "add inline policy". Select the json tab and paste in the following policy. Click "Review", give the policy any name ("aws-batch-policy"), and click "Create". This policy is less permissive than administrator access, but still  give this users full access to each of the resources listed below.
 ```json
 {
     "Version": "2012-10-17",
@@ -44,7 +44,8 @@ The policies used here are more permissive than necessary and can be restricted 
                 "batch:*",
                 "logs:*",
                 "ecr:*",
-                "ec2:*"
+                "ec2:*",
+                "s3:*"
             ],
             "Resource": "*"
         }
@@ -183,7 +184,7 @@ The contents of `sample_job_1.sh` are shown below. You need to modify several va
 {
     "jobName": "sample_job_1",
     "jobQueue": "batch_tutorial_queue",
-    "jobDefinition": "aws-batch-test",
+    "jobDefinition": "batch_tutorial_job_definition",
     "containerOverrides": {
         "environment": [
             {
