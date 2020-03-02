@@ -1,7 +1,7 @@
 {
     "jobName": "sample_job_1",
     "jobQueue": "batch_tutorial_queue",
-    "jobDefinition": "aws-batch-test",
+    "jobDefinition": "batch_tutorial_job_definition",
     "containerOverrides": {
         "environment": [
             {
