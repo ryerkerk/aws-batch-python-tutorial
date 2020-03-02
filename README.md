@@ -22,7 +22,7 @@ Please feel free to create an issue on this repository if you have any problems!
 
 ## Setting up AWS user permissions
 
-AWS CLI will be used to submit batch jobs, and configuring the CLI requires access keys be generated. It is not recommended that you use account's root access keys. Instead an IAM user will be created with sufficient permissions to create and submit batch jobs.
+AWS CLI will be used to submit batch jobs, and configuring the CLI requires access keys be generated. It is not recommended that you use  root account's access keys. Instead an IAM user will be created with sufficient permissions to create and submit batch jobs.
 
 The policies used here are more permissive than necessary and can be restricted based on your use case.
 
